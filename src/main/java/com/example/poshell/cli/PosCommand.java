@@ -38,4 +38,17 @@ public class PosCommand {
         }
         return "ERROR";
     }
+
+    
+
+    @ShellMethod(value = "Checkout",key="c")
+    public String checkout(){
+        posService.checkout(posService.getCart());
+        return "Checkout!";
+    }
+
+    @ShellMethod(value = "Show Orders",key="o")
+    public String order(){
+        return posService.getOrder().toString();
+    }
 }

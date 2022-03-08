@@ -3,6 +3,7 @@ package com.example.poshell.biz;
 import com.example.poshell.db.PosDB;
 import com.example.poshell.model.Cart;
 import com.example.poshell.model.Item;
+import com.example.poshell.model.Order;
 import com.example.poshell.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,12 +32,18 @@ public class PosServiceImp implements PosService {
 
     @Override
     public void checkout(Cart cart) {
-
+        posDB.checkout(cart);
+        newCart();
     }
 
     @Override
     public void total(Cart cart) {
 
+    }
+
+    @Override
+    public Order getOrder(){
+        return posDB.getOrder();
     }
 
     @Override
