@@ -8,6 +8,7 @@ import com.example.poshell.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -37,11 +38,6 @@ public class PosServiceImp implements PosService {
     }
 
     @Override
-    public void total(Cart cart) {
-
-    }
-
-    @Override
     public Order getOrder(){
         return posDB.getOrder();
     }
@@ -60,6 +56,20 @@ public class PosServiceImp implements PosService {
         this.getCart().addItem(new Item(product, amount));
         return true;
     }
+
+    @Override
+    public boolean remove(String productId){
+        if(getCart()==null)return false;
+        Iterator<Item> iterator=getCart().getItems().iterator();
+        while(iterator.hasNext()){
+            Item item=iterator.next();
+            if(item.getProduct().getId().equals(productId)){
+                iterator.remove();
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public List<Product> products() {

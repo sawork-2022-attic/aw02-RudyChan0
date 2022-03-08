@@ -44,5 +44,14 @@ Implementing a PosDB with real database is very much welcome.
 
 Please use asciinema (https://asciinema.org) to record a demo and submit the url in QQ group. 
 
-And please elaborate your understanding in layered systems via this homework in your README.md.
+And please elaborate your understanding in layered systems via this homework in your README.md.  
+  
 
+## My Understanding  
+Presentation Layer与DataAccess Layer是很容易区别的，但其各自与BusinessLogic Layer的分离是感到有一些困难的。  
+现在有的主要思路还是：
+- 对数据库的直接交互操作必须放于数据层
+- 事务层实现数据存取的基本接口，并在此进行数据的处理，再调用基本接口通知数据层
+- 显示层调用事务层的数据处理接口，尽可能直接获得能够显示的数据
+
+（ note：lombok真好用
